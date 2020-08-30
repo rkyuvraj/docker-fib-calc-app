@@ -13,3 +13,8 @@ after_success:
     - docker build -t rkyuvraj/fib-calc-app-nginx ./nginx
     - docker build -t rkyuvraj/fib-calc-app-api ./server
     - docker build -t rkyuvraj/fib-calc-app-worker ./worker
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    - docker push rkyuvraj/fib-calc-app-client
+    - docker push rkyuvraj/fib-calc-app-nginx
+    - docker push rkyuvraj/fib-calc-app-api
+    - docker push rkyuvraj/fib-calc-app-worker
