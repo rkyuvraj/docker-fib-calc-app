@@ -1,0 +1,15 @@
+sudo: required
+services:
+    - docker
+
+before_install:
+    - docker build -t rkyuvraj/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+    - docker run -e CI=true rkyuvraj/react-test npm test
+
+after_success:
+    - docker build -t rkyuvraj/fib-calc-app-client ./client
+    - docker build -t rkyuvraj/fib-calc-app-nginx ./nginx
+    - docker build -t rkyuvraj/fib-calc-app-api ./server
+    - docker build -t rkyuvraj/fib-calc-app-worker ./worker
