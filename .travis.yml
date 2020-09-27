@@ -18,3 +18,16 @@ after_success:
     - docker push rkyuvraj/fib-calc-app-nginx
     - docker push rkyuvraj/fib-calc-app-api
     - docker push rkyuvraj/fib-calc-app-worker
+
+deploy:
+    provider: elasticbeanstalk
+    region: ap-south-1
+    app:  docker-fib-calculator
+    env: DockerFibCalculator-env
+    edge: true
+    bucket_name: elasticbeanstalk-ap-south-1-214924494988
+    bucket_path: docker-fib-calculator
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY

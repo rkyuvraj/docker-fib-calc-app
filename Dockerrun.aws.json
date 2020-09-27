@@ -1,0 +1,33 @@
+{
+	"AWSEBDockerrunVersion": 2,
+	"containerDefinitions": [{
+			"name": "client",
+			"image": "rkyuvraj/fib-calc-app-client",
+			"hostname": "client",
+			"essential": false
+		},
+		{
+			"name": "api",
+			"image": "rkyuvraj/fib-calc-app-api",
+			"hostname": "api",
+			"essential": false
+		},
+		{
+			"name": "worker",
+			"image": "rkyuvraj/fib-calc-app-worker",
+			"hostname": "worker",
+			"essential": false
+		},
+		{
+			"name": "nginx",
+			"image": "rkyuvraj/fib-calc-app-nginx",
+			"hostname": "nginx",
+			"essential": true,
+			"portMappings": [{
+				"hostPort": 80,
+				"containerPort": 80
+			}],
+			"links": ["client", "api"]
+		}
+	]
+}
