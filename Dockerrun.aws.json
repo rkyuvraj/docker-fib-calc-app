@@ -4,19 +4,22 @@
 			"name": "client",
 			"image": "rkyuvraj/fib-calc-app-client",
 			"hostname": "client",
-			"essential": false
+            "essential": false,
+            "memory": 128
 		},
 		{
 			"name": "api",
 			"image": "rkyuvraj/fib-calc-app-api",
 			"hostname": "api",
-			"essential": false
+            "essential": false,
+            "memory": 128
 		},
 		{
 			"name": "worker",
 			"image": "rkyuvraj/fib-calc-app-worker",
 			"hostname": "worker",
-			"essential": false
+            "essential": false,
+            "memory": 128
 		},
 		{
 			"name": "nginx",
@@ -27,7 +30,8 @@
 				"hostPort": 80,
 				"containerPort": 80
 			}],
-			"links": ["client", "api"]
+            "links": ["client", "api"],
+            "memory": 128
 		}
 	]
 }
