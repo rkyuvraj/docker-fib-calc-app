@@ -22,7 +22,7 @@ const pgClient = new Pool({
 pgClient.on("connect", () => {
   pgClient
     .query("CREATE TABLE IF NOT EXISTS values (number INT)")
-    .catch((error) => console.log(err));
+    .catch((error) => console.log(error));
 });
 
 const redis = require("redis");
@@ -53,9 +53,9 @@ app.get("/values/current", async (req, res) => {
 });
 
 app.post("/values", async (req, res) => {
-  const index = req.body.index;
+  const index = parseInt(req.body.index);
 
-  if (parseInt(index) > 40) {
+  if (index > 40) {
     return res.status(422).send("Index too high");
   }
 
